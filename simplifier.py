@@ -7,7 +7,7 @@ class Simplifier:
         Dans les 3/4 des cas possibles, votre opération initiale sera juste annulée !
 
 
-        raise: Si le den = 0, Si le num et le den sont pas des int, Si le den = 1 et le num 0 et que l'operateur est dans [*, /]
+        raise: Si le den = 0, Si le num et le den sont pas des int, Si le den = 1 et le num 0 et que l'operateur est dans [/]
         Pre : La fraction attendue doit être de type tuple, et le contenu des tuples doivent être des integers.
         Post: 0 si tout est passé au niveau des tests
         """
@@ -20,8 +20,8 @@ class Simplifier:
             raise ValueError("Attention, vos fraction ne sont pas composées de nombres !")
 
         # Si den == 1 et num == 0 et que c'est des operateur * et /:
-        if fract[1] == 1 and fract[0] == 0 and operateur in ["*", "/"]:
-            raise ValueError("Attention, vous ne pouvez pas faire de multuplications ou divisions avec 0 !")
+        if fract[1] == 1 and fract[0] == 0 and operateur in ["/"]:
+            raise ValueError("Attention, vous ne pouvez pas faire de divisions avec 0 !")
 
         return 0
 
