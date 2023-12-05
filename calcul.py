@@ -2,8 +2,8 @@ class Fraction:
     def __init__(self, numerateur: int, denominateur: int):
         """Construit la fraction avec un numérateur et dénominateur
 
-               PRE : 'num' entier, 'den' est un entier
-               POST : crée une fraction
+               PRE : 'num' int, 'den' int
+               POST : construit la fraction
                RAISES : Erreur si denominateur est nul, si un élément n'est pas un int
         """
         if denominateur == 0:

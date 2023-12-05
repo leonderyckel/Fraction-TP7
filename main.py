@@ -42,10 +42,7 @@ if __name__ == "__main__":
         elif command == "!q":
             print("Merci d'avoir utilisé cette super calculatrice du tonnerre !")
             break
-        elif command == "!n":
-            # Reset memory if needed. Not implemented in the provided code.
-            print("Hop là, la mémoire à été reset à 0")
-            continue
+
         elif command == "!c":
             try:
                 fraction_une = Fraction(*fract_to_tuple(commande(string="Entrez votre première fraction")))
