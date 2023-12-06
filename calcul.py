@@ -81,7 +81,7 @@ class Fraction:
         """
         if other.__denominateur != 1:
             raise ValueError("Le dénominateur doit etre 1.")
-        if other.__numerateur <0:
+        if other.__numerateur < 0:
             raise ValueError("Pas d'exposant négatif possible")
 
         num = self.__numerateur ** other.__numerateur
