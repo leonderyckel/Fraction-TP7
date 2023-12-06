@@ -2,7 +2,7 @@ class Fraction:
     def __init__(self, numerateur: int, denominateur: int):
         """Construit la fraction avec un numérateur et dénominateur
 
-               PRE : 'num' int, 'den' int de la fraction entrée par l'utilisateur
+               PRE : le numérateur int, et le dénominateur int de la fraction entrée par l'utilisateur
                POST : construit la fraction, de numerateur et denominateur indiqué en parametre
                RAISES : ZeroDivisionError si le denominateur est nul, TypeError si un élément n'est pas un int
 
