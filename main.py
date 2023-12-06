@@ -2,21 +2,28 @@ from calcul import Fraction
 from os import system
 from platform import system as platform_system
 
+
 def commande(string: str) -> str:
     return input(f"\n -> {string} > ")
 
+
 def fract_to_tuple(frac_ent: str) -> tuple:
-    if "/" in frac_ent:
-        num, den = map(int, frac_ent.split("/"))
-        return num, den
-    else:
-        return int(frac_ent), 1
+    try:
+        if "/" in frac_ent:
+            num, den = map(int, frac_ent.split("/"))
+            return num, den
+        else:
+            return int(frac_ent), 1
+    except ValueError:
+        raise ValueError("La fraction doit être composée de nombres entiers.")
+
 
 def clear():
     if platform_system() in ['Darwin', 'Linux']:
         system("clear")
     else:
         system("cls")
+
 
 if __name__ == "__main__":
     first_help = True
@@ -44,24 +51,58 @@ if __name__ == "__main__":
             break
 
         elif command == "!c":
+
             try:
+
                 fraction_une = Fraction(*fract_to_tuple(commande(string="Entrez votre première fraction")))
+
                 fraction_deux = Fraction(*fract_to_tuple(commande(string="Entrez votre seconde fraction")))
 
-                operateur = commande(string="Quelle opération voulez-vous effectuer [+ - * /]").strip()
+                operateur = commande(string="Quelle opération voulez-vous effectuer [+ - * / ** ==]").strip()
 
                 if operateur == '+':
+
                     result = fraction_une + fraction_deux
+
                 elif operateur == '-':
+
                     result = fraction_une - fraction_deux
+
                 elif operateur == '*':
+
                     result = fraction_une * fraction_deux
+
                 elif operateur == '/':
+
                     result = fraction_une / fraction_deux
+
+                elif operateur == '**':
+
+                    result = fraction_une ** fraction_deux
+
+                elif operateur == '==':
+                    result = fraction_une == fraction_deux
+                    print(f"\nLe résultat de l'opération est: {result}")
+                    continue
+
                 else:
+
                     raise ValueError("Opérateur non valide.")
 
                 print(f"\nLe résultat de l'opération est: {result}")
+                print(f"Valeur décimale (float): {float(result)}")
+                print(f"Sous forme de nombre fractionnaire (mixed_number): {result.as_mixed_number()}")
+
+                if result.is_zero():
+                    print("Le résultat est zéro (is_zero)")
+                if result.is_integer():
+                    print("Le résultat est un entier (is_integer)")
+                if result.is_proper():
+                    print("Le résultat est une fraction propre (is_proper)")
+                if result.is_unit():
+                    print("Le numérateur vaut 1 (is_unit)")
+                if result.is_adjacent_to(fraction_deux):
+                    print("Les fractions sont adjacente (is_adjacent_to)")
 
             except ValueError as e:
                 print(f"Erreur: {e}")
