@@ -75,12 +75,15 @@ class Fraction:
         """
         Effectue la puissance de la premiere fraction avec le numérateur de la seconde
         Surcharge de l'opérateur ** pour les fractions.
-        PRE :self, la fraction. Other, la fraction doit être un nombre entier donc le dénominateur doit etre 1
+        PRE :self, la fraction. Other, la fraction doit être un nombre entier positif. donc le dénominateur doit etre 1
         POST : retourne un nouveau objet Fraction egale à la puissance de la premiere par la seconde
-        RAISES : ValueError si l'exposant n'est pas un entier.
+        RAISES : ValueError si l'exposant n'est pas un entier, si l'exposant est négatif
         """
-        if other.denominateur != 1:
+        if other.__denominateur != 1:
             raise ValueError("Le dénominateur doit etre 1.")
+        if other.__numerateur <0:
+            raise ValueError("Pas d'exposant négatif possible")
+
         num = self.__numerateur ** other.__numerateur
         den = self.__denominateur ** other.__numerateur
         return Fraction(num, den)
