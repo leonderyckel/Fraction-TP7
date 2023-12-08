@@ -101,7 +101,7 @@ if __name__ == "__main__":
                     print("Le résultat est une fraction propre (is_proper)")
                 if result.is_unit():
                     print("Le numérateur vaut 1 (is_unit)")
-                if result.is_adjacent_to(fraction_deux):
+                if fraction_une.is_adjacent_to(fraction_deux):
                     print("Les fractions sont adjacente (is_adjacent_to)")
 
             except ValueError as e:

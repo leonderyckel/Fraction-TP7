@@ -1,12 +1,12 @@
 class Fraction:
-    def __init__(self, numerateur: int, denominateur: int):
+    def __init__(self, numerateur: int = 0, denominateur: int = 1):
         """Construit la fraction avec un numérateur et dénominateur
 
-               PRE : le numérateur int, et le dénominateur int
-               POST : construit la fraction, de numerateur et denominateur indiqué en parametre, si le dénominateur est négatif,
-                      on passe le - au numérateur et si le numérateur et le dénominateur sont négatifs les 2 deviennent positifs.
-                      le self.__num et le self.__den sont privés et ne sont pas modifiable en dehors de la classe (encapsulation)
-               RAISES : ZeroDivisionError si le denominateur est nul, TypeError si un élément n'est pas un int
+               PRE : le numérateur int, et le dénominateur int POST : construit la fraction, de numerateur et
+               denominateur indiqué en parametre, si le dénominateur est négatif, on passe le - au numérateur et si
+               le numérateur et le dénominateur sont négatifs les 2 deviennent positifs. le self.__num et le
+               self.__den sont privés et ne sont pas modifiable en dehors de la classe (encapsulation) RAISES :
+               ZeroDivisionError si le denominateur est nul, TypeError si un élément n'est pas un int
 
         """
         if denominateur == 0:
@@ -150,8 +150,8 @@ class Fraction:
         PRE : self, La fraction
         POST : retourne 'True' si le numérateur est 1, sinon renvoi 'False'
                """
-        gcd_value = self._gcd(self.__numerateur, self.__denominateur)
-        return self.__numerateur // gcd_value == 1
+
+        return self.__numerateur  == 1
 
     def is_adjacent_to(self, other):
         """
@@ -162,11 +162,13 @@ class Fraction:
             PRE : self, La fraction other, l'autre fraction
             POST : retourne 'True' si les deux fraction diffèrent d'une fraction unitaire, sinon retourne 'False'
         """
+
         self._validate_fraction(other)
-        num = (self.__numerateur * other.__denominateur) - (other.__numerateur * self.__denominateur)
-        den = (self.__denominateur * other.__denominateur)
-        gcd_value = self._gcd(num, den)
-        return abs(num // gcd_value) == 1
+        difference = self.__numerateur * other.__denominateur - other.__numerateur * self.__denominateur
+
+        difference_abs = abs(difference)
+        return difference_abs == 1
+
 
     def as_mixed_number(self):
         """
@@ -231,7 +233,10 @@ class Fraction:
         Pre: self, la fraction
         Post: renvoi str, représentation textuelle de la fraction
         """
-        return f"{self.__numerateur}/{self.__denominateur}" if self.__denominateur != 1 else str(self.__numerateur)
+        if self.__denominateur == 1:
+            return str(self.__numerateur)
+        else:
+            return f"{self.__numerateur}/{self.__denominateur}"
 
     @property
     def numerateur(self):
