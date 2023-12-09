@@ -2,11 +2,12 @@ class Fraction:
     def __init__(self, numerateur: int = 0, denominateur: int = 1):
         """Construit la fraction avec un numérateur et dénominateur
 
-               PRE : le numérateur int, et le dénominateur int POST : construit la fraction, de numerateur et
-               denominateur indiqué en parametre, si le dénominateur est négatif, on passe le - au numérateur et si
-               le numérateur et le dénominateur sont négatifs les 2 deviennent positifs. le self.__num et le
-               self.__den sont privés et ne sont pas modifiable en dehors de la classe (encapsulation) RAISES :
-               ZeroDivisionError si le denominateur est nul, TypeError si un élément n'est pas un int
+               PRE : le numérateur int, et le dénominateur int
+               POST : construit la fraction, de numerateur et denominateur indiqué en parametre,
+               si le dénominateur est négatif, on passe le - au numérateur et si le numérateur et le dénominateur sont
+               négatifs les 2 deviennent positifs.
+               le self.__num et le self.__den sont privés et ne sont pas modifiable en dehors de la classe (encapsulation)
+               RAISES : ZeroDivisionError si le denominateur est nul, TypeError si un élément n'est pas un int
 
         """
         if denominateur == 0:
@@ -29,8 +30,8 @@ class Fraction:
         """
         Effectue la somme de deux fractions. Surcharge de l'opérateur + pour les fractions
 
-        Pre: self, la fraction. other, l'autre fraction à ajouter.
-        Post: retourne un object de la classe Fraction egale à la somme des deux fractions
+        Pre: other (object de la classe fraction), l'autre fraction à ajouter.
+        Post: retourne un object de la classe Fraction egale à la somme des deux fractions self et other
         """
         self._validate_fraction(other)
         num = self.__numerateur * other.__denominateur + other.__numerateur * self.__denominateur
@@ -41,8 +42,8 @@ class Fraction:
         """
         Effectue la soustraction de deux fractions.Surcharge de l'opérateur - pour les fractions.
 
-        Pre: self, la fraction. other, l'autre fraction à soustraire
-        Post:  retourne un object de la classe Fraction egale à la différence des deux fractions
+        Pre: other (object de la classe fraction), l'autre fraction à soustraire
+        Post:  retourne un object de la classe Fraction egale à la différence des deux fractions self et other
         """
         self._validate_fraction(other)
         num = self.__numerateur * other.__denominateur - other.__numerateur * self.__denominateur
@@ -53,8 +54,8 @@ class Fraction:
         """
         Effectue la multiplication de deux fractions.Surcharge de l'opérateur * pour les fractions.
 
-        Pre: self, la fraction. other, l'autre fraction à multiplier
-        Post:  retourne un object de la classe Fraction egale à la multiplication des deux fractions
+        Pre: other (object de la classe fraction), l'autre fraction à multiplier
+        Post:  retourne un object de la classe Fraction egale à la multiplication des deux fractions self et other
         """
         self._validate_fraction(other)
         num = self.__numerateur * other.__numerateur
@@ -65,8 +66,8 @@ class Fraction:
         """
         Effectue la division de deux fractions.Surcharge de l'opérateur / pour les fractions.
 
-        Pre: self, la fraction. other, le diviseur
-        Post: retourne un object de la classe Fraction egale à la division des deux fractions
+        Pre: other (object de la classe fraction), le diviseur
+        Post: retourne un object de la classe Fraction egale à la division des deux fractions self et other
         Raises: ZeroDivisionError si le numerateur de other (le diviseur) vaut 0
         """
         self._validate_fraction(other)
@@ -80,10 +81,10 @@ class Fraction:
     def __pow__(self, other: 'Fraction') -> 'Fraction':
         """
         Effectue la puissance de la premiere fraction avec le numérateur de la seconde
-        Surcharge de l'opérateur ** pour les fractions.
-        PRE :self, la fraction. Other, la fraction doit être un nombre entier positif. donc le dénominateur doit etre 1
-        POST : retourne un nouveau objet Fraction egale à la puissance de la premiere par la seconde
-        RAISES : ValueError si l'exposant n'est pas un entier, si l'exposant est négatif
+        Surcharge de l'opérateur ** pour les fractions. Pour faire plus simple, on va seulement utiliser des exposants entier et positif.
+        PRE :Other (object de la classe fraction), positive et de dénominateur égale à 1
+        POST : retourne un  objet de la classe Fraction egale à la puissance de self et other
+        RAISES : ValueError si le dénominateur de other n'est pas 1, si la fraction other est négative
         """
         if other.__denominateur != 1:
             raise ValueError("Le dénominateur doit etre 1.")
@@ -98,7 +99,7 @@ class Fraction:
         """
         Vérifie l'égalité entre les 2 fractions. Surcharge de l'opérateur == pour les fractions.
         PRE : self, la fraction. other, la fraction a comparer
-        POST : retourne 'True' si les deux fractions sont égales (les mêmes)quand elles sont simplifiées,
+        POST : retourne un boolean, 'True' si les deux fractions sont égales (les mêmes) quand elles sont simplifiées,
         sinon retourne 'False'.
         """
         self._validate_fraction(other)
@@ -121,7 +122,7 @@ class Fraction:
         Vérifier si la valeur d'une fraction est 0
 
         PRE : self, La fraction
-        POST : retourne 'True' si la fraction est égale à zero, sinon renvoi 'False'
+        POST : retourne un boolean, 'True' si la fraction est égale à zero, sinon renvoi 'False'
         """
         return self.__numerateur == 0
 
@@ -130,7 +131,7 @@ class Fraction:
         Vérifie si une fraction est un entier
 
         PRE : self, La fraction
-        POST : retourne 'True' si la fraction est un entier, sinon renvoi 'False'
+        POST : retourne un boolean, 'True' si la fraction est un entier, sinon renvoi 'False'
         """
         return self.__numerateur % self.__denominateur == 0
 
@@ -139,7 +140,7 @@ class Fraction:
         Vérifie si la valeur absolue de la fraction est < 1
 
         PRE : self, La fraction
-        POST : retourne True si la fraction est propre, False sinon
+        POST : retourne un boolean, True si la fraction est propre (valeur absolue <1), False sinon
                 """
         return abs(self.__numerateur) < abs(self.__denominateur)
 
@@ -148,7 +149,7 @@ class Fraction:
         Vérifie si le numérateur d'une fraction est 1 sous sa forme réduite
 
         PRE : self, La fraction
-        POST : retourne 'True' si le numérateur est 1, sinon renvoi 'False'
+        POST : retourne un boolean, 'True' si le numérateur est 1, sinon renvoi 'False'
                """
 
         return self.__numerateur  == 1
