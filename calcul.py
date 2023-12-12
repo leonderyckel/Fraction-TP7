@@ -14,13 +14,15 @@ class Fraction:
             raise ZeroDivisionError("Le dénominateur ne peut pas être 0.")
         if not isinstance(numerateur, int) or not isinstance(denominateur, int):
             raise TypeError("Le numérateur et le dénominateur doivent être des entiers.")
-        if denominateur < 0:
-            numerateur = -numerateur
-            denominateur = -denominateur
+
 
         if numerateur < 0 and denominateur < 0:
             numerateur = abs(numerateur)
             denominateur = abs(denominateur)
+
+        if denominateur < 0:
+            numerateur = -numerateur
+            denominateur = -denominateur
 
         self.__numerateur = numerateur
         self.__denominateur = denominateur
